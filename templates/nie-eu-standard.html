@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EX-15 Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        h3 {
+            color: #666;
+            margin-top: 30px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .section {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #444;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 30px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        .form-row > div {
+            flex: 1;
+        }
+        .small-input {
+            width: auto;
+            max-width: 150px;
+        }
+        .checkbox-group {
+            margin-top: 10px;
+        }
+        .checkbox-group label {
+            display: inline-block;
+            margin-right: 20px;
+            font-weight: normal;
+        }
+        .checkbox-group input[type="checkbox"],
+        .checkbox-group input[type="radio"] {
+            width: auto;
+            margin-right: 5px;
+        }
+        .info-text {
+            color: #666;
+            font-size: 14px;
+            font-style: italic;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>EX-15 Application Form - NIE Request</h2>
+
+<form method="POST" action="/generate-pdf">
+
+<!-- SECTION 1: DATOS DEL EXTRANJERO/A -->
+<div class="section">
+    <h3>Section 1: Personal Information (DATOS DEL EXTRANJERO/A)</h3>
+
+    <label>Passport Number *</label>
+    <input name="passport_number" required>
+
+    <div class="form-row">
+        <div>
+            <label>Last Name (1er Apellido) *</label>
+            <input name="last_name" required>
+        </div>
+    </div>
+
+    <label>Birth Names (Nombre) *</label>
+    <input name="birth_names" required>
+
+    <label>Date of Birth *</label>
+    <input type="date" name="dob" required>
+
+    <div class="form-row">
+        <div>
+            <label>City of Birth *</label>
+            <input name="birth_city" required>
+        </div>
+        <div>
+            <label>Country of Birth *</label>
+            <input name="birth_country" required>
+        </div>
+    </div>
+
+    <label>Nationality *</label>
+    <input name="nationality" required>
+
+    <label>Sex *</label>
+    <select name="sex" required>
+        <option value="">Select...</option>
+        <option value="H">Male (H)</option>
+        <option value="M">Female (M)</option>
+    </select>
+
+    <label>Marital Status (Estado civil)</label>
+    <select name="marital_status">
+        <option value="">Select...</option>
+        <option value="S">Single (S)</option>
+        <option value="C">Married (C)</option>
+        <option value="V">Widowed (V)</option>
+        <option value="D">Divorced (D)</option>
+        <option value="SP">Separated (Sp)</option>
+    </select>
+
+    <div class="form-row">
+        <div>
+            <label>Father's First Name</label>
+            <input name="father_name">
+        </div>
+        <div>
+            <label>Mother's First Name</label>
+            <input name="mother_name">
+        </div>
+    </div>
+
+    <h3>Address in Spain</h3>
+
+    <div class="form-row">
+        <div>
+            <label>Street (Domicilio de residencia) *</label>
+            <input name="street" required>
+        </div>
+        <div>
+            <label>Number (Nº) *</label>
+            <input name="street_number" class="small-input" required>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div>
+            <label>Town / City (Localidad) *</label>
+            <input name="town" required>
+        </div>
+        <div>
+            <label>Postcode (C.P.) *</label>
+            <input name="postcode" class="small-input" required>
+        </div>
+    </div>
+
+    <label>Province (Provincia) *</label>
+    <input name="province" required>
+
+    <label>Mobile Phone (Teléfono móvil) *</label>
+    <input name="phone" type="tel" required placeholder="e.g. +34 123456789">
+
+    <label>Email *</label>
+    <input name="email" type="email" required>
+</div>
+
+<!-- SECTION 4: DATOS RELATIVOS A LA SOLICITUD -->
+<div class="section">
+    <h3>Section 4: Application Details (DATOS RELATIVOS A LA SOLICITUD)</h3>
+
+    <label>4.1. Type of Document (TIPO DE DOCUMENTO) *</label>
+    <div class="checkbox-group">
+        <label>
+            <input type="radio" name="doc_type" value="NIE" checked required>
+            NIE (Número de Identidad de Extranjero)
+        </label>
+        <label>
+            <input type="radio" name="doc_type" value="CERT">
+            Certificate (Certificado)
+        </label>
+    </div>
+
+    <div id="cert_type_group" style="display: none; margin-left: 30px;">
+        <p class="info-text">If you selected Certificate, choose type:</p>
+        <div class="checkbox-group">
+            <label>
+                <input type="radio" name="cert_type" value="RESIDENTE">
+                Resident (De residente)
+            </label>
+            <label>
+                <input type="radio" name="cert_type" value="NO_RESIDENTE">
+                Non-resident (De no residente)
+            </label>
+        </div>
+    </div>
+
+    <label>4.2. Reasons (MOTIVOS) - Check all that apply</label>
+    <div class="checkbox-group">
+        <label>
+            <input type="checkbox" name="motivo_economico">
+            Economic interests (Por intereses económicos)
+        </label>
+        <label>
+            <input type="checkbox" name="motivo_profesional">
+            Professional interests (Por intereses profesionales)
+        </label>
+        <label>
+            <input type="checkbox" name="motivo_social">
+            Social interests (Por intereses sociales)
+        </label>
+    </div>
+
+    <label>4.3. Place of Submission (LUGAR DE PRESENTACIÓN) *</label>
+    <div class="checkbox-group">
+        <label>
+            <input type="radio" name="lugar" value="EXTRANJERIA" required>
+            Foreigners Office (Oficina de Extranjería)
+        </label>
+        <label>
+            <input type="radio" name="lugar" value="POLICIA" checked>
+            Police Station (Comisaría de Policía)
+        </label>
+        <label>
+            <input type="radio" name="lugar" value="CONSULAR">
+            Consular Office (Oficina Consular)
+        </label>
+    </div>
+
+    <label>4.4. Situation in Spain (SITUACIÓN EN ESPAÑA) *</label>
+    <div class="checkbox-group">
+        <label>
+            <input type="radio" name="situacion" value="ESTANCIA" required>
+            Stay (Estancia)
+        </label>
+        <label>
+            <input type="radio" name="situacion" value="RESIDENCIA">
+            Residence (Residencia)
+        </label>
+    </div>
+</div>
+
+<button type="submit">Generate PDF</button>
+
+</form>
+
+<script>
+    // Show/hide certificate type options based on document type selection
+    document.querySelectorAll('input[name="doc_type"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            var certTypeGroup = document.getElementById('cert_type_group');
+            if (this.value === 'CERT') {
+                certTypeGroup.style.display = 'block';
+            } else {
+                certTypeGroup.style.display = 'none';
+                // Uncheck cert_type radios when NIE is selected
+                document.querySelectorAll('input[name="cert_type"]').forEach(function(r) {
+                    r.checked = false;
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
