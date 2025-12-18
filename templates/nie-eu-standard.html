@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>EX-15 Form</title>
+    <title>Document Generator - All Forms</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
+            max-width: 900px;
             margin: 20px auto;
             padding: 20px;
             background-color: #f5f5f5;
         }
-        h2 {
+        h1 {
             color: #333;
+            text-align: center;
             border-bottom: 3px solid #4CAF50;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
         }
-        h3 {
+        h2 {
             color: #666;
             margin-top: 30px;
             border-bottom: 2px solid #ddd;
@@ -23,10 +24,14 @@
         }
         .section {
             background-color: white;
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .form-selection {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4CAF50;
         }
         label {
             display: block;
@@ -36,22 +41,24 @@
         }
         input, select {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             margin-top: 5px;
             border: 1px solid #ddd;
             border-radius: 4px;
             box-sizing: border-box;
+            font-size: 14px;
         }
         button {
             background-color: #4CAF50;
             color: white;
-            padding: 12px 30px;
+            padding: 15px 40px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
             margin-top: 30px;
             width: 100%;
+            font-weight: bold;
         }
         button:hover {
             background-color: #45a049;
@@ -62,10 +69,6 @@
         }
         .form-row > div {
             flex: 1;
-        }
-        .small-input {
-            width: auto;
-            max-width: 150px;
         }
         .checkbox-group {
             margin-top: 10px;
@@ -80,62 +83,177 @@
             width: auto;
             margin-right: 5px;
         }
-        .info-text {
-            color: #666;
-            font-size: 14px;
-            font-style: italic;
-            margin-top: 5px;
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            margin: 8px 0;
+            background-color: white;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .form-checkbox:hover {
+            border-color: #4CAF50;
+            background-color: #f9fff9;
+        }
+        .form-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            cursor: pointer;
+        }
+        .form-checkbox-label {
+            font-weight: 600;
+            color: #333;
+            font-size: 15px;
+        }
+        .required {
+            color: #d32f2f;
+        }
+        #ex15_fields {
+            display: none;
+        }
+        .info-box {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
         }
     </style>
 </head>
 <body>
 
-<h2>EX-15 Application Form - NIE Request</h2>
+<h1>📄 Document Generator System</h1>
 
-<form method="POST" action="/generate-pdf">
+<form method="POST" action="/generate-pdfs">
 
-<!-- SECTION 1: DATOS DEL EXTRANJERO/A -->
+<!-- FORM SELECTION -->
+<div class="section form-selection">
+    <h2>📋 Step 1: Select Documents to Generate</h2>
+    <p style="color: #666;">Choose which documents you need (select one or more):</p>
+    
+    <div class="form-checkbox">
+        <input type="checkbox" id="ex15_alzira" name="selected_forms" value="ex15_alzira" onchange="toggleEX15Fields()">
+        <label class="form-checkbox-label" for="ex15_alzira">EX-15 Alzira (NIE Application - Alzira Office)</label>
+    </div>
+    
+    <div class="form-checkbox">
+        <input type="checkbox" id="ex15_valencia" name="selected_forms" value="ex15_valencia" onchange="toggleEX15Fields()">
+        <label class="form-checkbox-label" for="ex15_valencia">EX-15 Valencia (NIE Application - Valencia Office)</label>
+    </div>
+    
+    <div class="form-checkbox">
+        <input type="checkbox" id="poder_notarial" name="selected_forms" value="poder_notarial">
+        <label class="form-checkbox-label" for="poder_notarial">Poder Notarial (Power of Attorney)</label>
+    </div>
+    
+    <div class="form-checkbox">
+        <input type="checkbox" id="shipping_receipt" name="selected_forms" value="shipping_receipt">
+        <label class="form-checkbox-label" for="shipping_receipt">Shipping Receipt</label>
+    </div>
+    
+    <div class="form-checkbox">
+        <input type="checkbox" id="consent_agreement" name="selected_forms" value="consent_agreement">
+        <label class="form-checkbox-label" for="consent_agreement">Customer Consent Agreement</label>
+    </div>
+</div>
+
+<!-- PERSONAL INFORMATION -->
 <div class="section">
-    <h3>Section 1: Personal Information (DATOS DEL EXTRANJERO/A)</h3>
-
-    <label>Passport Number *</label>
+    <h2>👤 Step 2: Personal Information</h2>
+    
+    <label>Passport Number <span class="required">*</span></label>
     <input name="passport_number" required>
 
     <div class="form-row">
         <div>
-            <label>Last Name (1er Apellido) *</label>
+            <label>Last Name <span class="required">*</span></label>
             <input name="last_name" required>
+        </div>
+        <div>
+            <label>Birth Names / First Names <span class="required">*</span></label>
+            <input name="birth_names" required>
         </div>
     </div>
 
-    <label>Birth Names (Nombre) *</label>
-    <input name="birth_names" required>
-
-    <label>Date of Birth *</label>
+    <label>Date of Birth <span class="required">*</span></label>
     <input type="date" name="dob" required>
 
     <div class="form-row">
         <div>
-            <label>City of Birth *</label>
+            <label>City of Birth <span class="required">*</span></label>
             <input name="birth_city" required>
         </div>
         <div>
-            <label>Country of Birth *</label>
+            <label>Country of Birth <span class="required">*</span></label>
             <input name="birth_country" required>
         </div>
     </div>
 
-    <label>Nationality *</label>
+    <label>Nationality <span class="required">*</span></label>
     <input name="nationality" required>
+</div>
 
-    <label>Sex *</label>
-    <select name="sex" required>
+<!-- ADDRESS INFORMATION -->
+<div class="section">
+    <h2>🏠 Step 3: Address Information</h2>
+
+    <div class="form-row">
+        <div>
+            <label>Street <span class="required">*</span></label>
+            <input name="street" required>
+        </div>
+        <div>
+            <label>Number <span class="required">*</span></label>
+            <input name="street_number" required style="max-width: 150px;">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div>
+            <label>Town / City <span class="required">*</span></label>
+            <input name="town" required>
+        </div>
+        <div>
+            <label>Postcode <span class="required">*</span></label>
+            <input name="postcode" required style="max-width: 150px;">
+        </div>
+    </div>
+
+    <label>Province <span class="required">*</span></label>
+    <input name="province" required>
+</div>
+
+<!-- CONTACT INFORMATION -->
+<div class="section">
+    <h2>📞 Step 4: Contact Information</h2>
+
+    <label>Mobile Phone <span class="required">*</span></label>
+    <input name="phone" type="tel" required placeholder="e.g. +34 123456789">
+
+    <label>Email <span class="required">*</span></label>
+    <input name="email" type="email" required>
+</div>
+
+<!-- EX-15 SPECIFIC FIELDS (only show if EX-15 is selected) -->
+<div id="ex15_fields" class="section">
+    <h2>📝 Additional Info for EX-15 Forms</h2>
+    
+    <div class="info-box">
+        <strong>Note:</strong> These fields are only required if you selected an EX-15 form above.
+    </div>
+
+    <label>Sex</label>
+    <select name="sex">
         <option value="">Select...</option>
         <option value="H">Male (H)</option>
         <option value="M">Female (M)</option>
     </select>
 
-    <label>Marital Status (Estado civil)</label>
+    <label>Marital Status</label>
     <select name="marital_status">
         <option value="">Select...</option>
         <option value="S">Single (S)</option>
@@ -156,48 +274,12 @@
         </div>
     </div>
 
-    <h3>Address in Spain</h3>
+    <h2>Section 4: Application Details</h2>
 
-    <div class="form-row">
-        <div>
-            <label>Street (Domicilio de residencia) *</label>
-            <input name="street" required>
-        </div>
-        <div>
-            <label>Number (Nº) *</label>
-            <input name="street_number" class="small-input" required>
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div>
-            <label>Town / City (Localidad) *</label>
-            <input name="town" required>
-        </div>
-        <div>
-            <label>Postcode (C.P.) *</label>
-            <input name="postcode" class="small-input" required>
-        </div>
-    </div>
-
-    <label>Province (Provincia) *</label>
-    <input name="province" required>
-
-    <label>Mobile Phone (Teléfono móvil) *</label>
-    <input name="phone" type="tel" required placeholder="e.g. +34 123456789">
-
-    <label>Email *</label>
-    <input name="email" type="email" required>
-</div>
-
-<!-- SECTION 4: DATOS RELATIVOS A LA SOLICITUD -->
-<div class="section">
-    <h3>Section 4: Application Details (DATOS RELATIVOS A LA SOLICITUD)</h3>
-
-    <label>4.1. Type of Document (TIPO DE DOCUMENTO) *</label>
+    <label>4.1. Type of Document</label>
     <div class="checkbox-group">
         <label>
-            <input type="radio" name="doc_type" value="NIE" checked required>
+            <input type="radio" name="doc_type" value="NIE" checked>
             NIE (Número de Identidad de Extranjero)
         </label>
         <label>
@@ -206,56 +288,42 @@
         </label>
     </div>
 
-    <div id="cert_type_group" style="display: none; margin-left: 30px;">
-        <p class="info-text">If you selected Certificate, choose type:</p>
-        <div class="checkbox-group">
-            <label>
-                <input type="radio" name="cert_type" value="RESIDENTE">
-                Resident (De residente)
-            </label>
-            <label>
-                <input type="radio" name="cert_type" value="NO_RESIDENTE">
-                Non-resident (De no residente)
-            </label>
-        </div>
-    </div>
-
-    <label>4.2. Reasons (MOTIVOS) - Check all that apply</label>
+    <label>4.2. Reasons (Check all that apply)</label>
     <div class="checkbox-group">
         <label>
             <input type="checkbox" name="motivo_economico">
-            Economic interests (Por intereses económicos)
+            Economic interests
         </label>
         <label>
             <input type="checkbox" name="motivo_profesional">
-            Professional interests (Por intereses profesionales)
+            Professional interests
         </label>
         <label>
             <input type="checkbox" name="motivo_social">
-            Social interests (Por intereses sociales)
+            Social interests
         </label>
     </div>
 
-    <label>4.3. Place of Submission (LUGAR DE PRESENTACIÓN) *</label>
+    <label>4.3. Place of Submission</label>
     <div class="checkbox-group">
         <label>
-            <input type="radio" name="lugar" value="EXTRANJERIA" required>
-            Foreigners Office (Oficina de Extranjería)
+            <input type="radio" name="lugar" value="EXTRANJERIA">
+            Foreigners Office
         </label>
         <label>
             <input type="radio" name="lugar" value="POLICIA" checked>
-            Police Station (Comisaría de Policía)
+            Police Station
         </label>
         <label>
             <input type="radio" name="lugar" value="CONSULAR">
-            Consular Office (Oficina Consular)
+            Consular Office
         </label>
     </div>
 
-    <label>4.4. Situation in Spain (SITUACIÓN EN ESPAÑA) *</label>
+    <label>4.4. Situation in Spain</label>
     <div class="checkbox-group">
         <label>
-            <input type="radio" name="situacion" value="ESTANCIA" required>
+            <input type="radio" name="situacion" value="ESTANCIA">
             Stay (Estancia)
         </label>
         <label>
@@ -265,26 +333,22 @@
     </div>
 </div>
 
-<button type="submit">Generate PDF</button>
+<button type="submit">🚀 Generate Selected Documents</button>
 
 </form>
 
 <script>
-    // Show/hide certificate type options based on document type selection
-    document.querySelectorAll('input[name="doc_type"]').forEach(function(radio) {
-        radio.addEventListener('change', function() {
-            var certTypeGroup = document.getElementById('cert_type_group');
-            if (this.value === 'CERT') {
-                certTypeGroup.style.display = 'block';
-            } else {
-                certTypeGroup.style.display = 'none';
-                // Uncheck cert_type radios when NIE is selected
-                document.querySelectorAll('input[name="cert_type"]').forEach(function(r) {
-                    r.checked = false;
-                });
-            }
-        });
-    });
+function toggleEX15Fields() {
+    var alziraChecked = document.getElementById('ex15_alzira').checked;
+    var valenciaChecked = document.getElementById('ex15_valencia').checked;
+    var ex15Fields = document.getElementById('ex15_fields');
+    
+    if (alziraChecked || valenciaChecked) {
+        ex15Fields.style.display = 'block';
+    } else {
+        ex15Fields.style.display = 'none';
+    }
+}
 </script>
 
 </body>

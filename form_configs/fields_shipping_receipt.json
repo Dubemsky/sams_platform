@@ -1,0 +1,95 @@
+{
+  "pages": [
+    {
+      "page_number": 1,
+      "image_width": 707,
+      "image_height": 1000
+    }
+  ],
+  "form_fields": [
+    {
+      "page_number": 1,
+      "description": "Full first and last name",
+      "field_label": "Full first and last name:",
+      "label_bounding_box": [73, 194, 340, 217],
+      "entry_bounding_box": [355, 194, 620, 217],
+      "entry_text": {
+        "text": "{full_name}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    },
+    {
+      "page_number": 1,
+      "description": "Street and house number",
+      "field_label": "Street and house number:",
+      "label_bounding_box": [73, 227, 340, 250],
+      "entry_bounding_box": [355, 227, 620, 250],
+      "entry_text": {
+        "text": "{street_and_number}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    },
+    {
+      "page_number": 1,
+      "description": "City",
+      "field_label": "City:",
+      "label_bounding_box": [73, 260, 340, 283],
+      "entry_bounding_box": [355, 260, 620, 283],
+      "entry_text": {
+        "text": "{city}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    },
+    {
+      "page_number": 1,
+      "description": "Postal code",
+      "field_label": "Postal code:",
+      "label_bounding_box": [73, 293, 340, 316],
+      "entry_bounding_box": [355, 293, 620, 316],
+      "entry_text": {
+        "text": "{postcode}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    },
+    {
+      "page_number": 1,
+      "description": "Country",
+      "field_label": "Country:",
+      "label_bounding_box": [73, 326, 340, 349],
+      "entry_bounding_box": [355, 326, 620, 349],
+      "entry_text": {
+        "text": "{country}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    },
+    {
+      "page_number": 1,
+      "description": "Email address",
+      "field_label": "Email address:",
+      "label_bounding_box": [73, 359, 340, 382],
+      "entry_bounding_box": [355, 359, 620, 382],
+      "entry_text": {
+        "text": "{email}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    },
+    {
+      "page_number": 1,
+      "description": "Phone number",
+      "field_label": "Phone number:",
+      "label_bounding_box": [73, 392, 340, 415],
+      "entry_bounding_box": [355, 392, 620, 415],
+      "entry_text": {
+        "text": "{phone}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    }
+  ]
+}

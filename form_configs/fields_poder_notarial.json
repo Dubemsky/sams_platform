@@ -1,0 +1,141 @@
+{
+  "pages": [
+    {
+      "page_number": 1,
+      "image_width": 707,
+      "image_height": 1000
+    },
+    {
+      "page_number": 2,
+      "image_width": 707,
+      "image_height": 1000
+    },
+    {
+      "page_number": 7,
+      "image_width": 707,
+      "image_height": 1000
+    }
+  ],
+  "form_fields": [
+    {
+      "page_number": 1,
+      "description": "Full name and surname",
+      "field_label": "{full name and surname}",
+      "label_bounding_box": [173, 262, 375, 275],
+      "entry_bounding_box": [173, 262, 375, 275],
+      "entry_text": {
+        "text": "{full_name}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    },
+    {
+      "page_number": 1,
+      "description": "Street and number",
+      "field_label": "{Street and number}",
+      "label_bounding_box": [217, 293, 410, 306],
+      "entry_bounding_box": [217, 293, 410, 306],
+      "entry_text": {
+        "text": "{street_and_number}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    },
+    {
+      "page_number": 1,
+      "description": "Postal code",
+      "field_label": "{postalcode}",
+      "label_bounding_box": [449, 293, 547, 306],
+      "entry_bounding_box": [449, 293, 547, 306],
+      "entry_text": {
+        "text": "{postcode}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    },
+    {
+      "page_number": 1,
+      "description": "City",
+      "field_label": "{City}",
+      "label_bounding_box": [578, 293, 634, 306],
+      "entry_bounding_box": [578, 293, 634, 306],
+      "entry_text": {
+        "text": "{city}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    },
+    {
+      "page_number": 1,
+      "description": "Country",
+      "field_label": "{country}",
+      "label_bounding_box": [173, 324, 243, 337],
+      "entry_bounding_box": [173, 324, 243, 337],
+      "entry_text": {
+        "text": "{country}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    },
+    {
+      "page_number": 1,
+      "description": "Date of birth",
+      "field_label": "{Date of birth}",
+      "label_bounding_box": [372, 324, 508, 337],
+      "entry_bounding_box": [372, 324, 508, 337],
+      "entry_text": {
+        "text": "{dob}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    },
+    {
+      "page_number": 1,
+      "description": "Passport number",
+      "field_label": "{passportnumber}",
+      "label_bounding_box": [466, 354, 597, 367],
+      "entry_bounding_box": [466, 354, 597, 367],
+      "entry_text": {
+        "text": "{passport_number}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    },
+    {
+      "page_number": 1,
+      "description": "Nationality",
+      "field_label": "{Nationality}",
+      "label_bounding_box": [285, 384, 392, 397],
+      "entry_bounding_box": [285, 384, 392, 397],
+      "entry_text": {
+        "text": "{nationality}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    },
+    {
+      "page_number": 2,
+      "description": "Date of today on page 2",
+      "field_label": "{date of today}",
+      "label_bounding_box": [331, 758, 470, 771],
+      "entry_bounding_box": [331, 758, 470, 771],
+      "entry_text": {
+        "text": "{date_today}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    },
+    {
+      "page_number": 7,
+      "description": "Customer name for signature",
+      "field_label": "{Full customer name}",
+      "label_bounding_box": [249, 766, 462, 779],
+      "entry_bounding_box": [249, 766, 462, 779],
+      "entry_text": {
+        "text": "{full_name}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    }
+  ]
+}

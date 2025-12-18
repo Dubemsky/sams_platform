@@ -1,0 +1,52 @@
+{
+  "pages": [
+    {
+      "page_number": 1,
+      "image_width": 707,
+      "image_height": 1000
+    },
+    {
+      "page_number": 2,
+      "image_width": 707,
+      "image_height": 1000
+    }
+  ],
+  "form_fields": [
+    {
+      "page_number": 1,
+      "description": "Date of today",
+      "field_label": "{Date of today}",
+      "label_bounding_box": [113, 90, 199, 103],
+      "entry_bounding_box": [113, 90, 199, 103],
+      "entry_text": {
+        "text": "{date_today}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    },
+    {
+      "page_number": 2,
+      "description": "Full name and surname",
+      "field_label": "{Full name and surname}",
+      "label_bounding_box": [79, 547, 227, 560],
+      "entry_bounding_box": [79, 547, 227, 560],
+      "entry_text": {
+        "text": "{full_name}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    },
+    {
+      "page_number": 2,
+      "description": "Passport number",
+      "field_label": "{Passport number}",
+      "label_bounding_box": [285, 547, 391, 560],
+      "entry_bounding_box": [285, 547, 391, 560],
+      "entry_text": {
+        "text": "{passport_number}",
+        "font_size": 11,
+        "font_color": "FF0000"
+      }
+    }
+  ]
+}

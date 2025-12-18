@@ -5,8 +5,6 @@ from pypdf import PdfReader, PdfWriter
 from pypdf.annotations import FreeText
 
 
-# Fills a PDF by adding text annotations defined in `fields.json`. See FORMS.md.
-
 
 def transform_coordinates(bbox, image_width, image_height, pdf_width, pdf_height):
     """Transform bounding box from image coordinates to PDF coordinates"""
@@ -18,7 +16,6 @@ def transform_coordinates(bbox, image_width, image_height, pdf_width, pdf_height
     left = bbox[0] * x_scale
     right = bbox[2] * x_scale
     
-    # Flip Y coordinates for PDF
     top = pdf_height - (bbox[1] * y_scale)
     bottom = pdf_height - (bbox[3] * y_scale)
     
@@ -32,11 +29,9 @@ def fill_pdf_form(input_pdf_path, fields_json_path, output_pdf_path):
     with open(fields_json_path, "r") as f:
         fields_data = json.load(f)
     
-    # Open the PDF
     reader = PdfReader(input_pdf_path)
     writer = PdfWriter()
     
-    # Copy all pages to writer
     writer.append(reader)
     
     # Get PDF dimensions for each page
@@ -74,8 +69,6 @@ def fill_pdf_form(input_pdf_path, fields_json_path, output_pdf_path):
         font_size = str(entry_text.get("font_size", 14)) + "pt"
         font_color = entry_text.get("font_color", "000000")
 
-        # Font size/color seems to not work reliably across viewers:
-        # https://github.com/py-pdf/pypdf/issues/2084
         annotation = FreeText(
             text=text,
             rect=transformed_entry_box,
@@ -86,10 +79,8 @@ def fill_pdf_form(input_pdf_path, fields_json_path, output_pdf_path):
             background_color=None,
         )
         annotations.append(annotation)
-        # page_number is 0-based for pypdf
         writer.add_annotation(page_number=page_num - 1, annotation=annotation)
         
-    # Save the filled PDF
     with open(output_pdf_path, "wb") as output:
         writer.write(output)
     
@@ -97,11 +88,12 @@ def fill_pdf_form(input_pdf_path, fields_json_path, output_pdf_path):
     print(f"Added {len(annotations)} text annotations")
 
 
-if len(sys.argv) != 4:
-    print("Usage: fill_pdf_form_with_annotations.py [input pdf] [fields.json] [output pdf]")
-    sys.exit(1)
-input_pdf = sys.argv[1]
-fields_json = sys.argv[2]
-output_pdf = sys.argv[3]
+if __name__ == "__main__":
+    if len(sys.argv) != 4:
+        print("Usage: fill_pdf_form_with_annotations.py [input pdf] [fields.json] [output pdf]")
+        sys.exit(1)
+    input_pdf = sys.argv[1]
+    fields_json = sys.argv[2]
+    output_pdf = sys.argv[3]
     
-fill_pdf_form(input_pdf, fields_json, output_pdf)
+    fill_pdf_form(input_pdf, fields_json, output_pdf)
