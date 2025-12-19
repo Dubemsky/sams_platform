@@ -21,7 +21,7 @@
       "entry_text": {
         "text": "{date_today}",
         "font_size": 11,
-        "font_color": "FF0000"
+        "font_color": "000000"
       }
     },
     {
@@ -33,7 +33,7 @@
       "entry_text": {
         "text": "{full_name}",
         "font_size": 11,
-        "font_color": "FF0000"
+        "font_color": "000000"
       }
     },
     {
@@ -45,7 +45,7 @@
       "entry_text": {
         "text": "{passport_number}",
         "font_size": 11,
-        "font_color": "FF0000"
+        "font_color": "000000"
       }
     }
   ]

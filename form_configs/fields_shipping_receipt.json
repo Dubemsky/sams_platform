@@ -16,7 +16,8 @@
       "entry_text": {
         "text": "{full_name}",
         "font_size": 11,
-        "font_color": "FF0000"
+        "font_color": "000000"
+
       }
     },
     {
@@ -28,7 +29,8 @@
       "entry_text": {
         "text": "{street_and_number}",
         "font_size": 11,
-        "font_color": "FF0000"
+        "font_color": "000000"
+
       }
     },
     {
@@ -40,7 +42,8 @@
       "entry_text": {
         "text": "{city}",
         "font_size": 11,
-        "font_color": "FF0000"
+        "font_color": "000000"
+
       }
     },
     {
@@ -52,7 +55,8 @@
       "entry_text": {
         "text": "{postcode}",
         "font_size": 11,
-        "font_color": "FF0000"
+        "font_color": "000000"
+
       }
     },
     {
@@ -64,7 +68,8 @@
       "entry_text": {
         "text": "{country}",
         "font_size": 11,
-        "font_color": "FF0000"
+        "font_color": "000000"
+
       }
     },
     {
@@ -76,7 +81,8 @@
       "entry_text": {
         "text": "{email}",
         "font_size": 11,
-        "font_color": "FF0000"
+        "font_color": "000000"
+
       }
     },
     {
@@ -88,7 +94,8 @@
       "entry_text": {
         "text": "{phone}",
         "font_size": 11,
-        "font_color": "FF0000"
+        "font_color": "000000"
+
       }
     }
   ]

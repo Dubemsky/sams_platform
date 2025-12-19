@@ -143,6 +143,9 @@ def fill_single_pdf(form_id, form_data):
         "{dob_year}": dob_year,
         "{Date of birth}": dob,
         "{date of today}": date_today,
+        "{dob}": dob,
+        "{date_today}": date_today,
+
         
         # Place of birth
         "{birth_city}": form_data.get("birth_city", ""),
@@ -282,44 +285,41 @@ def fill_single_pdf(form_id, form_data):
 @app.route("/generate-pdfs", methods=["POST"])
 def generate_pdfs():
     form_data = request.form
-    
-    # Get selected forms
-    selected_forms = request.form.getlist("selected_forms")
-    
-    if not selected_forms:
-        return "Please select at least one form to generate", 400
-    
+
+    # Instead of reading selected_forms, just use all FORM_CONFIGS
+    selected_forms = list(FORM_CONFIGS.keys())
+
     # Ensure output directory exists
     os.makedirs(os.path.join(BASE_DIR, "pdfs_output"), exist_ok=True)
-    
-    # Generate each selected PDF
+
+    # Generate each PDF
     generated_pdfs = []
     for form_id in selected_forms:
-        if form_id in FORM_CONFIGS:
-            try:
-                pdf_path = fill_single_pdf(form_id, form_data)
-                generated_pdfs.append(pdf_path)
-            except Exception as e:
-                return f"Error generating {form_id}: {str(e)}", 500
-    
+        try:
+            pdf_path = fill_single_pdf(form_id, form_data)
+            generated_pdfs.append(pdf_path)
+        except Exception as e:
+            return f"Error generating {form_id}: {str(e)}", 500
+
     # If only one PDF, send it directly
     if len(generated_pdfs) == 1:
         return send_file(generated_pdfs[0], as_attachment=True)
-    
+
     # If multiple PDFs, create a ZIP
     zip_buffer = io.BytesIO()
     with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
         for pdf_path in generated_pdfs:
             zip_file.write(pdf_path, os.path.basename(pdf_path))
-    
+
     zip_buffer.seek(0)
-    
+
     return send_file(
         zip_buffer,
         mimetype='application/zip',
         as_attachment=True,
         download_name=f'documents_{form_data.get("last_name", "user")}.zip'
     )
+
 
 
 if __name__ == "__main__":
