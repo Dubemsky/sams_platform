@@ -29,7 +29,7 @@
             border-radius: 8px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
-        .form-selection {
+        .info-header {
             background-color: #e8f5e9;
             border-left: 4px solid #4CAF50;
         }
@@ -83,37 +83,8 @@
             width: auto;
             margin-right: 5px;
         }
-        .form-checkbox {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            margin: 8px 0;
-            background-color: white;
-            border: 2px solid #ddd;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .form-checkbox:hover {
-            border-color: #4CAF50;
-            background-color: #f9fff9;
-        }
-        .form-checkbox input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            margin-right: 12px;
-            cursor: pointer;
-        }
-        .form-checkbox-label {
-            font-weight: 600;
-            color: #333;
-            font-size: 15px;
-        }
         .required {
             color: #d32f2f;
-        }
-        #ex15_fields {
-            display: none;
         }
         .info-box {
             background-color: #e3f2fd;
@@ -122,48 +93,46 @@
             margin: 15px 0;
             border-radius: 4px;
         }
+        .documents-list {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .documents-list ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .documents-list li {
+            margin: 5px 0;
+            color: #555;
+        }
     </style>
 </head>
 <body>
 
 <h1>📄 Document Generator System</h1>
 
-<form method="POST" action="/generate-pdfs">
-
-<!-- FORM SELECTION -->
-<div class="section form-selection">
-    <h2>📋 Step 1: Select Documents to Generate</h2>
-    <p style="color: #666;">Choose which documents you need (select one or more):</p>
-    
-    <div class="form-checkbox">
-        <input type="checkbox" id="ex15_alzira" name="selected_forms" value="ex15_alzira" onchange="toggleEX15Fields()">
-        <label class="form-checkbox-label" for="ex15_alzira">EX-15 Alzira (NIE Application - Alzira Office)</label>
-    </div>
-    
-    <div class="form-checkbox">
-        <input type="checkbox" id="ex15_valencia" name="selected_forms" value="ex15_valencia" onchange="toggleEX15Fields()">
-        <label class="form-checkbox-label" for="ex15_valencia">EX-15 Valencia (NIE Application - Valencia Office)</label>
-    </div>
-    
-    <div class="form-checkbox">
-        <input type="checkbox" id="poder_notarial" name="selected_forms" value="poder_notarial">
-        <label class="form-checkbox-label" for="poder_notarial">Poder Notarial (Power of Attorney)</label>
-    </div>
-    
-    <div class="form-checkbox">
-        <input type="checkbox" id="shipping_receipt" name="selected_forms" value="shipping_receipt">
-        <label class="form-checkbox-label" for="shipping_receipt">Shipping Receipt</label>
-    </div>
-    
-    <div class="form-checkbox">
-        <input type="checkbox" id="consent_agreement" name="selected_forms" value="consent_agreement">
-        <label class="form-checkbox-label" for="consent_agreement">Customer Consent Agreement</label>
+<div class="section info-header">
+    <h2>📋 Documents to be Generated</h2>
+    <div class="documents-list">
+        <p><strong>The following documents will be automatically generated:</strong></p>
+        <ul>
+            <li>EX-15 Alzira (NIE Application - Alzira Office)</li>
+            <li>EX-15 Valencia (NIE Application - Valencia Office)</li>
+            <li>Poder Notarial (Power of Attorney)</li>
+            <li>Shipping Receipt</li>
+            <li>Customer Consent Agreement</li>
+        </ul>
     </div>
 </div>
 
+<form method="POST" action="/generate-pdfs">
+
 <!-- PERSONAL INFORMATION -->
 <div class="section">
-    <h2>👤 Step 2: Personal Information</h2>
+    <h2>👤 Step 1: Personal Information</h2>
     
     <label>Passport Number <span class="required">*</span></label>
     <input name="passport_number" required>
@@ -195,11 +164,39 @@
 
     <label>Nationality <span class="required">*</span></label>
     <input name="nationality" required>
+
+    <label>Sex <span class="required">*</span></label>
+    <select name="sex" required>
+        <option value="">Select...</option>
+        <option value="H">Male (H)</option>
+        <option value="M">Female (M)</option>
+    </select>
+
+    <label>Marital Status <span class="required">*</span></label>
+    <select name="marital_status" required>
+        <option value="">Select...</option>
+        <option value="S">Single (S)</option>
+        <option value="C">Married (C)</option>
+        <option value="V">Widowed (V)</option>
+        <option value="D">Divorced (D)</option>
+        <option value="SP">Separated (Sp)</option>
+    </select>
+
+    <div class="form-row">
+        <div>
+            <label>Father's First Name <span class="required">*</span></label>
+            <input name="father_name" required>
+        </div>
+        <div>
+            <label>Mother's First Name <span class="required">*</span></label>
+            <input name="mother_name" required>
+        </div>
+    </div>
 </div>
 
 <!-- ADDRESS INFORMATION -->
 <div class="section">
-    <h2>🏠 Step 3: Address Information</h2>
+    <h2>🏠 Step 2: Address Information</h2>
 
     <div class="form-row">
         <div>
@@ -229,7 +226,7 @@
 
 <!-- CONTACT INFORMATION -->
 <div class="section">
-    <h2>📞 Step 4: Contact Information</h2>
+    <h2>📞 Step 3: Contact Information</h2>
 
     <label>Mobile Phone <span class="required">*</span></label>
     <input name="phone" type="tel" required placeholder="e.g. +34 123456789">
@@ -238,45 +235,11 @@
     <input name="email" type="email" required>
 </div>
 
-<!-- EX-15 SPECIFIC FIELDS (only show if EX-15 is selected) -->
-<div id="ex15_fields" class="section">
-    <h2>📝 Additional Info for EX-15 Forms</h2>
-    
-    <div class="info-box">
-        <strong>Note:</strong> These fields are only required if you selected an EX-15 form above.
-    </div>
+<!-- EX-15 SPECIFIC FIELDS -->
+<div class="section">
+    <h2>📝 Step 4: Application Details (for EX-15 Forms)</h2>
 
-    <label>Sex</label>
-    <select name="sex">
-        <option value="">Select...</option>
-        <option value="H">Male (H)</option>
-        <option value="M">Female (M)</option>
-    </select>
-
-    <label>Marital Status</label>
-    <select name="marital_status">
-        <option value="">Select...</option>
-        <option value="S">Single (S)</option>
-        <option value="C">Married (C)</option>
-        <option value="V">Widowed (V)</option>
-        <option value="D">Divorced (D)</option>
-        <option value="SP">Separated (Sp)</option>
-    </select>
-
-    <div class="form-row">
-        <div>
-            <label>Father's First Name</label>
-            <input name="father_name">
-        </div>
-        <div>
-            <label>Mother's First Name</label>
-            <input name="mother_name">
-        </div>
-    </div>
-
-    <h2>Section 4: Application Details</h2>
-
-    <label>4.1. Type of Document</label>
+    <label>4.1. Type of Document <span class="required">*</span></label>
     <div class="checkbox-group">
         <label>
             <input type="radio" name="doc_type" value="NIE" checked>
@@ -288,7 +251,7 @@
         </label>
     </div>
 
-    <label>4.2. Reasons (Check all that apply)</label>
+    <label>4.2. Reasons (Check all that apply) <span class="required">*</span></label>
     <div class="checkbox-group">
         <label>
             <input type="checkbox" name="motivo_economico">
@@ -304,7 +267,7 @@
         </label>
     </div>
 
-    <label>4.3. Place of Submission</label>
+    <label>4.3. Place of Submission <span class="required">*</span></label>
     <div class="checkbox-group">
         <label>
             <input type="radio" name="lugar" value="EXTRANJERIA">
@@ -320,7 +283,7 @@
         </label>
     </div>
 
-    <label>4.4. Situation in Spain</label>
+    <label>4.4. Situation in Spain <span class="required">*</span></label>
     <div class="checkbox-group">
         <label>
             <input type="radio" name="situacion" value="ESTANCIA">
@@ -333,23 +296,9 @@
     </div>
 </div>
 
-<button type="submit">🚀 Generate Selected Documents</button>
+<button type="submit">🚀 Generate All Documents</button>
 
 </form>
-
-<script>
-function toggleEX15Fields() {
-    var alziraChecked = document.getElementById('ex15_alzira').checked;
-    var valenciaChecked = document.getElementById('ex15_valencia').checked;
-    var ex15Fields = document.getElementById('ex15_fields');
-    
-    if (alziraChecked || valenciaChecked) {
-        ex15Fields.style.display = 'block';
-    } else {
-        ex15Fields.style.display = 'none';
-    }
-}
-</script>
 
 </body>
 </html>
