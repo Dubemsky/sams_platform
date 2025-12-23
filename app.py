@@ -2,9 +2,11 @@ from flask import Flask, render_template, request, send_file
 import json
 import os
 from datetime import datetime
-import fitz  # PyMuPDF
+import fitz 
 import zipfile
 import io
+import sys    
+import subprocess
 
 app = Flask(__name__)
 
@@ -257,9 +259,7 @@ def fill_single_pdf(form_id, form_data):
     output_name = config["output_name"].format(last_name=form_data.get("last_name", "user"))
     output_path = os.path.join(BASE_DIR, "pdfs_output", output_name)
     
-    # Fill PDF
-    import sys
-    import subprocess
+   
     venv_python = sys.executable
     
     result = subprocess.run([

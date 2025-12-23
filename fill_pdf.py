@@ -3,6 +3,7 @@ import sys
 from pypdf import PdfReader, PdfWriter
 from pypdf.annotations import FreeText
 
+
 def transform_coordinates(bbox, image_width, image_height, pdf_width, pdf_height):
     """
     Convert image coordinates (top-left origin)
@@ -17,6 +18,7 @@ def transform_coordinates(bbox, image_width, image_height, pdf_width, pdf_height
     bottom = pdf_height - (bbox[3] * y_scale)
 
     return left, bottom, right, top
+
 
 def fill_pdf_form(input_pdf_path, fields_json_path, output_pdf_path):
     with open(fields_json_path, "r") as f:
